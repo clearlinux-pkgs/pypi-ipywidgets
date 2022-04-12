@@ -4,7 +4,7 @@
 #
 Name     : pypi-ipywidgets
 Version  : 7.7.0
-Release  : 67
+Release  : 68
 URL      : https://files.pythonhosted.org/packages/ad/66/84dfc913aa85a861f90ddfc8f031506f75708e97cd989a69c8c2df76c61a/ipywidgets-7.7.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ad/66/84dfc913aa85a861f90ddfc8f031506f75708e97cd989a69c8c2df76c61a/ipywidgets-7.7.0.tar.gz
 Summary  : Interactive HTML widgets for Jupyter notebooks
@@ -62,7 +62,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1647447377
+export SOURCE_DATE_EPOCH=1649766524
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
