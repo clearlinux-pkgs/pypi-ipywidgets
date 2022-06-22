@@ -4,7 +4,7 @@
 #
 Name     : pypi-ipywidgets
 Version  : 7.7.1
-Release  : 70
+Release  : 71
 URL      : https://files.pythonhosted.org/packages/05/25/e29e5bffcc09710dd3ddf7c50a73697c0a822cbf23983ec5b874019353f2/ipywidgets-7.7.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/05/25/e29e5bffcc09710dd3ddf7c50a73697c0a822cbf23983ec5b874019353f2/ipywidgets-7.7.1.tar.gz
 Summary  : Interactive HTML widgets for Jupyter notebooks
@@ -40,6 +40,13 @@ python components for the pypi-ipywidgets package.
 Summary: python3 components for the pypi-ipywidgets package.
 Group: Default
 Requires: python3-core
+Provides: pypi(ipywidgets)
+Requires: pypi(ipykernel)
+Requires: pypi(ipython)
+Requires: pypi(ipython_genutils)
+Requires: pypi(jupyterlab_widgets)
+Requires: pypi(traitlets)
+Requires: pypi(widgetsnbextension)
 
 %description python3
 python3 components for the pypi-ipywidgets package.
@@ -48,13 +55,16 @@ python3 components for the pypi-ipywidgets package.
 %prep
 %setup -q -n ipywidgets-7.7.1
 cd %{_builddir}/ipywidgets-7.7.1
+pushd ..
+cp -a ipywidgets-7.7.1 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1655932778
+export SOURCE_DATE_EPOCH=1655937318
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -66,6 +76,15 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+python3 setup.py build
+
+popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
@@ -75,6 +94,15 @@ python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+python3 -tt setup.py build install --root=%{buildroot}-v3
+popd
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
