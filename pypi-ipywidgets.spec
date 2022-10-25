@@ -4,7 +4,7 @@
 #
 Name     : pypi-ipywidgets
 Version  : 8.0.2
-Release  : 77
+Release  : 78
 URL      : https://files.pythonhosted.org/packages/81/f7/86ef818eb0ecdd3fc8089209fbd6072243612563048bf5b5738f5bddd95d/ipywidgets-8.0.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/81/f7/86ef818eb0ecdd3fc8089209fbd6072243612563048bf5b5738f5bddd95d/ipywidgets-8.0.2.tar.gz
 Summary  : Interactive HTML widgets for Jupyter notebooks
