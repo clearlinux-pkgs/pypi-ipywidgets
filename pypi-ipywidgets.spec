@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-ipywidgets
-Version  : 8.0.5
-Release  : 83
-URL      : https://files.pythonhosted.org/packages/76/92/f984cc4c1294e3c240c7068fc57c4c130d4aefd784107bc888365b2d1cea/ipywidgets-8.0.5.tar.gz
-Source0  : https://files.pythonhosted.org/packages/76/92/f984cc4c1294e3c240c7068fc57c4c130d4aefd784107bc888365b2d1cea/ipywidgets-8.0.5.tar.gz
+Version  : 8.0.6
+Release  : 84
+URL      : https://files.pythonhosted.org/packages/64/3c/00fe451a0571677a37e78515613f6578ba61462626354a98c17e1b4f9c68/ipywidgets-8.0.6.tar.gz
+Source0  : https://files.pythonhosted.org/packages/64/3c/00fe451a0571677a37e78515613f6578ba61462626354a98c17e1b4f9c68/ipywidgets-8.0.6.tar.gz
 Summary  : Interactive HTML widgets for Jupyter notebooks
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -15,12 +15,6 @@ Requires: pypi-ipywidgets-license = %{version}-%{release}
 Requires: pypi-ipywidgets-python = %{version}-%{release}
 Requires: pypi-ipywidgets-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : pypi(ipython)
-BuildRequires : pypi(jupyterlab_widgets)
-BuildRequires : pypi(setuptools)
-BuildRequires : pypi(traitlets)
-BuildRequires : pypi(wheel)
-BuildRequires : pypi(widgetsnbextension)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -51,6 +45,7 @@ Summary: python3 components for the pypi-ipywidgets package.
 Group: Default
 Requires: python3-core
 Provides: pypi(ipywidgets)
+Requires: pypi(ipykernel)
 Requires: pypi(ipython)
 Requires: pypi(jupyterlab_widgets)
 Requires: pypi(traitlets)
@@ -61,10 +56,10 @@ python3 components for the pypi-ipywidgets package.
 
 
 %prep
-%setup -q -n ipywidgets-8.0.5
-cd %{_builddir}/ipywidgets-8.0.5
+%setup -q -n ipywidgets-8.0.6
+cd %{_builddir}/ipywidgets-8.0.6
 pushd ..
-cp -a ipywidgets-8.0.5 buildavx2
+cp -a ipywidgets-8.0.6 buildavx2
 popd
 
 %build
@@ -72,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679500085
+export SOURCE_DATE_EPOCH=1680049256
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
