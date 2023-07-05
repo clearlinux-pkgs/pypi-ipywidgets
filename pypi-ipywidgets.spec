@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-ipywidgets
-Version  : 8.0.6
-Release  : 84
-URL      : https://files.pythonhosted.org/packages/64/3c/00fe451a0571677a37e78515613f6578ba61462626354a98c17e1b4f9c68/ipywidgets-8.0.6.tar.gz
-Source0  : https://files.pythonhosted.org/packages/64/3c/00fe451a0571677a37e78515613f6578ba61462626354a98c17e1b4f9c68/ipywidgets-8.0.6.tar.gz
+Version  : 8.0.7
+Release  : 85
+URL      : https://files.pythonhosted.org/packages/93/7c/d88ab96dfeafdbd0669ff52879032631757a9ec51693baff17b3487d502f/ipywidgets-8.0.7.tar.gz
+Source0  : https://files.pythonhosted.org/packages/93/7c/d88ab96dfeafdbd0669ff52879032631757a9ec51693baff17b3487d502f/ipywidgets-8.0.7.tar.gz
 Summary  : Interactive HTML widgets for Jupyter notebooks
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -15,6 +15,8 @@ Requires: pypi-ipywidgets-license = %{version}-%{release}
 Requires: pypi-ipywidgets-python = %{version}-%{release}
 Requires: pypi-ipywidgets-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+BuildRequires : pypi(setuptools)
+BuildRequires : pypi(wheel)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -56,10 +58,10 @@ python3 components for the pypi-ipywidgets package.
 
 
 %prep
-%setup -q -n ipywidgets-8.0.6
-cd %{_builddir}/ipywidgets-8.0.6
+%setup -q -n ipywidgets-8.0.7
+cd %{_builddir}/ipywidgets-8.0.7
 pushd ..
-cp -a ipywidgets-8.0.6 buildavx2
+cp -a ipywidgets-8.0.7 buildavx2
 popd
 
 %build
@@ -67,15 +69,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680049256
+export SOURCE_DATE_EPOCH=1688571794
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
