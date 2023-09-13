@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-ipywidgets
-Version  : 8.1.0
-Release  : 86
-URL      : https://files.pythonhosted.org/packages/b7/94/61a6774e2f4d5657a18eabc1d4cc8a328e6aeb50f38314c4111af1f20adc/ipywidgets-8.1.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/b7/94/61a6774e2f4d5657a18eabc1d4cc8a328e6aeb50f38314c4111af1f20adc/ipywidgets-8.1.0.tar.gz
+Version  : 8.1.1
+Release  : 87
+URL      : https://files.pythonhosted.org/packages/1f/12/8d81aa8e49fd8a6e7b800f3cd5aca7205aac80518ebd1cc9a660f41be608/ipywidgets-8.1.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/1f/12/8d81aa8e49fd8a6e7b800f3cd5aca7205aac80518ebd1cc9a660f41be608/ipywidgets-8.1.1.tar.gz
 Summary  : Interactive HTML widgets for Jupyter notebooks
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -58,10 +58,10 @@ python3 components for the pypi-ipywidgets package.
 
 
 %prep
-%setup -q -n ipywidgets-8.1.0
-cd %{_builddir}/ipywidgets-8.1.0
+%setup -q -n ipywidgets-8.1.1
+cd %{_builddir}/ipywidgets-8.1.1
 pushd ..
-cp -a ipywidgets-8.1.0 buildavx2
+cp -a ipywidgets-8.1.1 buildavx2
 popd
 
 %build
@@ -69,7 +69,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1690900370
+export SOURCE_DATE_EPOCH=1694621785
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
